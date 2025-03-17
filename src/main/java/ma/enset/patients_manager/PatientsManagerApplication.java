@@ -22,10 +22,10 @@ public class PatientsManagerApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// Creating and saving patients using different methods
-		Patient patient1 = new Patient(null, "A", new Date(), false, 123);
-		Patient patient2 = new Patient(null, "B", new Date(), false, 115);
+		Patient patient1 = new Patient(null, "AAAA", new Date(), false, 123);
+		Patient patient2 = new Patient(null, "BBBB", new Date(), false, 115);
 		Patient patient3 = Patient.builder()
-				.name("C")
+				.name("CCCC")
 				.dateOfBirth(new Date())
 				.score(155)
 				.isSick(true)

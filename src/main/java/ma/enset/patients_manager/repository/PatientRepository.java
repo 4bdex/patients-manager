@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import ma.enset.patients_manager.entities.Patient;
 
 public interface PatientRepository extends JpaRepository<Patient, Long> {
-    // find by name
+    // find by name with pagination
     Page<Patient> findByNameContains(String keyword, Pageable pageable);
     // find by name using JPQL
     @Query("select p from Patient p where p.name like :x")
