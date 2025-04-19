@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PatientController {
 
     private PatientRepository patientRepository;
-    @GetMapping("/index")
+    @GetMapping("/user/index")
     public String index(Model model,
                         @RequestParam(name = "page", defaultValue = "0") int page,
                         @RequestParam(name = "size", defaultValue = "4") int size,
@@ -37,7 +37,7 @@ public class PatientController {
         model.addAttribute("keyword", kw);
         return "patients";
     }
-    @GetMapping("/delete")
+    @GetMapping("/admin/delete")
     public String delete(@RequestParam(name = "id") Long id,
                          @RequestParam(name = "keyword",defaultValue = "") String keyword,
                          @RequestParam(name = "page",defaultValue = "0") int page){
@@ -45,14 +45,14 @@ public class PatientController {
         return "redirect:/index?page="+page+"&keyword="+keyword;
     }
 
-    @GetMapping("/formPatients")
+    @GetMapping("/admin/formPatients")
 public String formPatients(Model model){
         model.addAttribute("patient",new Patient());
 return "formPatients";
 
 }
 
-@PostMapping(path="/save")
+@PostMapping(path="/admin/save")
 public String save(Model model, @Valid Patient patient, BindingResult bindingResult,
                     @RequestParam(defaultValue = "0")  int page,
                     @RequestParam(defaultValue = "") String keyword){
@@ -60,7 +60,7 @@ public String save(Model model, @Valid Patient patient, BindingResult bindingRes
 patientRepository.save(patient);
 return "redirect:/index?page="+page+"&keyword="+keyword;
 }
-    @GetMapping("/edit")
+    @GetMapping("/admin/edit")
     public String edit(Model model, Long id, String keyword, int page){
         Patient patient=patientRepository.findById(id).orElse(null);
         if (patient==null) throw new RuntimeException("patient introuvable");
@@ -73,7 +73,7 @@ return "redirect:/index?page="+page+"&keyword="+keyword;
 
     @GetMapping("/")
     public String home() {
-        return "redirect:/index";
+        return "redirect:/user/index";
     }
 
 }

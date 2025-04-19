@@ -13,8 +13,7 @@
         <div class="card">
             <div class="card-header">Edit Patient</div>
             <div class="card-body">
-                <form method="post" th:action="@{save(page=${page},keyword=${keyword})}">
-                    <!-- Hidden ID field to identify the patient being updated -->
+                <form method="post" th:action="@{/admin/save(page=${page},keyword=${keyword})}">
                     <input type="hidden" name="id" th:value="${patient.id}" />
                     
                     <div class="mb-3">
@@ -42,7 +41,7 @@
                 </form>
             </div>
         </div>
-        <a th:href="@{/index(page=${page},keyword=${keyword})}" class="btn btn-secondary mt-3">Back to Patient List</a>
+        <a th:href="@{/user/index(page=${page},keyword=${keyword})}" class="btn btn-secondary mt-3">Back to Patient List</a>
     </div>
     </div>
 </body>
