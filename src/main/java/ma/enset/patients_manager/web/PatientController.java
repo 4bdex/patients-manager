@@ -42,7 +42,7 @@ public class PatientController {
                          @RequestParam(name = "keyword",defaultValue = "") String keyword,
                          @RequestParam(name = "page",defaultValue = "0") int page){
         patientRepository.deleteById(id);
-        return "redirect:/index?page="+page+"&keyword="+keyword;
+        return "redirect:/user/index?page="+page+"&keyword="+keyword;
     }
 
     @GetMapping("/admin/formPatients")
@@ -58,7 +58,7 @@ public String save(Model model, @Valid Patient patient, BindingResult bindingRes
                     @RequestParam(defaultValue = "") String keyword){
         if (bindingResult.hasErrors()) return "formPatients";
 patientRepository.save(patient);
-return "redirect:/index?page="+page+"&keyword="+keyword;
+return "redirect:/user/index?page="+page+"&keyword="+keyword;
 }
     @GetMapping("/admin/edit")
     public String edit(Model model, Long id, String keyword, int page){
