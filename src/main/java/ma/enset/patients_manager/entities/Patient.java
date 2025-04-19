@@ -33,7 +33,7 @@ public class Patient {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
 
-    private boolean isSick;
+    private boolean sick; // following dumb lambok naming convention :D
 
     @DecimalMin(value = "100", message = "Score must be at least 100")
     private int score;

@@ -21,15 +21,13 @@ public class PatientController {
     @GetMapping("/index")
     public String index(Model model,
                         @RequestParam(name = "page", defaultValue = "0") int page,
-                        @RequestParam(name = "size", defaultValue = "10") int size,
+                        @RequestParam(name = "size", defaultValue = "4") int size,
                         @RequestParam(name = "keyword", defaultValue = "") String kw) {
         // Validate page number
-
-
+        if (page < 0) page = 0;
+      
         // Perform search with pagination
         Page<Patient> patientPage = patientRepository.findByNameContains(kw, PageRequest.of(page, size));
-
-        // Error handling if patientPage is null or not found
 
         // Add attributes to model
         model.addAttribute("listPatients", patientPage.getContent());
@@ -69,8 +67,13 @@ return "redirect:/index?page="+page+"&keyword="+keyword;
         model.addAttribute("patient",patient);
         model.addAttribute("page",page);
         model.addAttribute("keyword",keyword);
-        return "edit";
+        return "editPatient";
 
+    }
+
+    @GetMapping("/")
+    public String home() {
+        return "redirect:/index";
     }
 
 }

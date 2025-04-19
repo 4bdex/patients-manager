@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{template}">
+<head>
+    <title>Edit Patient</title>
+</head>
+<body>
+    <div layout:fragment="content1">
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">Edit Patient</div>
+            <div class="card-body">
+                <form method="post" th:action="@{save(page=${page},keyword=${keyword})}">
+                    <!-- Hidden ID field to identify the patient being updated -->
+                    <input type="hidden" name="id" th:value="${patient.id}" />
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" name="name" class="form-control" th:value="${patient.name}" required />
+                        <span class="text-danger" th:errors="${patient.name}"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Date of Birth</label>
+                        <input type="date" name="dateOfBirth" class="form-control" 
+                               th:value="${#dates.format(patient.dateOfBirth, 'yyyy-MM-dd')}" />
+                        <span class="text-danger" th:errors="${patient.dateOfBirth}"></span>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" name="sick" th:checked="${patient.sick}" />
+                        <label class="form-check-label">Is Sick</label>
+                        <span class="text-danger" th:errors="${patient.sick}"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Score</label>
+                        <input type="number" name="score" class="form-control" th:value="${patient.score}" />
+                        <span class="text-danger" th:errors="${patient.score}"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+            </div>
+        </div>
+        <a th:href="@{/index(page=${page},keyword=${keyword})}" class="btn btn-secondary mt-3">Back to Patient List</a>
+    </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{template}">
+<head>
+    <title>Add New Patient</title>
+</head>
+<body>
+    <div layout:fragment="content1">
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">Add New Patient</div>
+            <div class="card-body">
+                <form method="post" th:action="@{save}">
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" name="name" class="form-control" th:value="${patient.name}" required />
+                        <span class="text-danger" th:errors="${patient.name}"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Date of Birth</label>
+                        <input type="date" name="dateOfBirth" class="form-control" th:value="${patient.dateOfBirth}" />
+                        <span class="text-danger" th:errors="${patient.dateOfBirth}"></span>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" name="sick" th:checked="${patient.sick}" />
+                        <label class="form-check-label">Is Sick</label>
+                        <span class="text-danger" th:errors="${patient.sick}"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Score</label>
+                        <input type="number" name="score" class="form-control" th:value="${patient.score}" />
+                        <span class="text-danger" th:errors="${patient.score}"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+        <a th:href="@{/index}" class="btn btn-secondary mt-3">Back to Patient List</a>
+    </div>
+    </div>
+</body>
+</html>
